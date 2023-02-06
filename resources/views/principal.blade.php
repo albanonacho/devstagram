@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('titulo')
-Página principal UFF
+Página principal
 @endsection
 
 @section('contenido')
-Contenido de esta <strong>página</strong>
+    <div class="container p-10 bg-yellow-300">Contenido de esta <strong>página</strong></div>
 @endsection
