@@ -5,5 +5,7 @@ Página principal
 @endsection
 
 @section('contenido')
-    <div class="container p-10 bg-yellow-300">Contenido de esta <strong>página</strong></div>
+<div class="container">
+    <x-listar-post :posts="$posts"/>
+</div>
 @endsection

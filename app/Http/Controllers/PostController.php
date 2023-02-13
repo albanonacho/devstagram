@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -15,7 +16,7 @@ class PostController extends Controller
     
     public function index(User $user)
     {
-        $posts = Post::where('user_id', $user->id)->paginate(20);
+        $posts = Post::where('user_id', $user->id)->latest()->paginate(20);
 
         return view('dashboard', [
             'user' => $user,
@@ -65,6 +66,15 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        dd($post->id);
+        $this->authorize('delete', $post);
+        $post->delete();
+
+        $imagenPath = public_path('uploads/' . $post->imagen);
+        if (File::exits($imagenPath)) {
+            unlink($imagenPath);
+
+        }
+
+        return redirect()->route('posts.index', auth()->user()->username);
     }
 }
