@@ -68,4 +68,4 @@ Perfil: {{ $user->username }}
         <h2 class="text-4x6 text-center font-black my-10">Publicaciones</h2>
         <x-listar-post :posts="$posts" />
     </section>
-@endsectionno
+@endsection
